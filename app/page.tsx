@@ -1,7 +1,13 @@
-import Image from "next/image";
+"use client";
+
+import Tasks from "./components/Tasks/Tasks";
+import { useGlobalState } from "./context/GlobalProvider";
 
 export default function Home() {
+
+  const { tasks }= useGlobalState();
+
   return (
-    <main></main>
+    <Tasks title="All Tasks" tasks={tasks} />
   );
 }

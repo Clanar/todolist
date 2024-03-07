@@ -41,7 +41,7 @@ export default function RootLayout({
           <NextTopLoader
             height={5}
             color="#27AE60"
-            easing="cubic-bezier(0.53, 0.21, 0.1)"
+            easing="cubic-bezier(0.53, 0.21, 0, 1)"
           />
           <ContextProvider>
             <GlobalStyleProvider>

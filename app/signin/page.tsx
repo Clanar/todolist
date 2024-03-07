@@ -4,7 +4,9 @@ import React from 'react'
 
 function page() {
   return (
-    <div><SignIn /></div>
+    <div className="flex items-center justify-center h-full">
+      <SignIn />
+    </div>
   )
 }
 

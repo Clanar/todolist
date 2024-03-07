@@ -214,7 +214,7 @@ const SidebarStyled = styled.nav`
             top: 0;
             width: 0%;
             height: 100%;
-            background-color: ${(props) => props.theme.colorGreenDark};
+            background-color: ${(props) => props.theme.colorGreenDark2};
 
             border-bottom-left-radius: 5px;
             border-top-left-radius: 5px;

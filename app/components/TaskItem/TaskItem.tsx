@@ -15,15 +15,32 @@ interface Props {
 }
 
 function TaskItem({ title, description, date, isCompleted, id }: Props) {
-    const { theme, deleteTask } = useGlobalState();
+    const { theme, deleteTask, updateTask } = useGlobalState();
     return (
         <TaskItemStyled theme={theme}>
             <h1>{title}</h1>
             <p>{description}</p>
             <p className='date'>{formatDate(date)}</p>
             <div className='task-footer'>
-                {isCompleted ? (<button className='completed'>Completed</button>) :
-                    (<button className='incomplete'>Incomplete</button>)}
+                {isCompleted ? (
+                    <button className='completed' onClick={() => {
+                        const task = {
+                            id,
+                            isCompleted: !isCompleted,
+                        };
+
+                        updateTask(task);
+                    }}>Completed</button>
+                ) : (
+                    <button className='incomplete' onClick={() => {
+                        const task = {
+                            id,
+                            isCompleted: !isCompleted,
+                        };
+
+                        updateTask (task);
+                    }}>Incomplete</button>
+                )}
 
                 <button className="edit"> {edit} </button>
                 <button className="delete" onClick={() => {
@@ -79,12 +96,22 @@ const TaskItemStyled = styled.div`
     .incomplete {
         display: inline-block;
         padding: 0.4rem 1rem;
-        background: ${(props) => props.theme.colorDanger};
+        background: ${(props) => props.theme.colorDanger2};
         border-radius: 30px;
+        transition: all 0.35s ease-in-out;
+
+        &:hover {
+            background: ${(props) => props.theme.colorDanger};
+        }
     }
 
     .completed {
-        background: ${(props) => props.theme.colorGreenDark};
+        background: ${(props) => props.theme.colorGreenDark2};
+        transition: all 0.35s ease-in-out;
+
+        &:hover {
+            background: ${(props) => props.theme.colorGreenDark};
+        }
     }
 }
 `

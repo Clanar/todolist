@@ -8,7 +8,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import Button from "../Button/Button";
 import { logout } from "@/app/utils/icons";
-import { useClerk } from "@clerk/nextjs";
+import { UserButton, useClerk, useUser } from "@clerk/nextjs";
 
 function Sidebar() {
     const { theme } = useGlobalState();
@@ -16,6 +16,13 @@ function Sidebar() {
     const router = useRouter();
     const pathname = usePathname();
     const { signOut } = useClerk();
+
+    const { user } = useUser();
+    const { firstName, lastName, imageUrl } = user || {
+        firstName: "",
+        lastName: "",
+        imageUrl: "",
+    };
 
     const handleClick = (link: string) => {
         router.push(link);
@@ -26,11 +33,13 @@ function Sidebar() {
             <div className="profile">
                 <div className="profile-overlay"></div>
                 <div className="image">
-                    <Image width={2000} height={2000} src="/avatar1.jpg" alt="profile" />
+                    <Image width={2000} height={2000} src={imageUrl } alt="profile" />
                 </div>
-                <h1>
-                    <span>Yehor</span>
-                    <span>Murashchyk</ span>
+                <div className="user-btn absolute z-20 top-0 w-full h-full">
+                    <UserButton />
+                </div>
+                <h1 className="capitalize">
+                    { firstName } { lastName }
                 </h1>
             </div>
             <ul className="nav-items">
@@ -39,6 +48,7 @@ function Sidebar() {
                     const link = item.link;
 
                     return <li
+                        key={item.id}
                         className={`nav-item ${pathname === link ? "active" : ""}`}
                         onClick={() => { handleClick(item.link) }}
                     >
@@ -60,7 +70,7 @@ function Sidebar() {
                     icon={logout}
                     click={() => {
                         signOut(() => router.push("/signin"));
-                         }
+                    }
                     }
                 />
             </div>
@@ -79,6 +89,24 @@ const SidebarStyled = styled.nav`
     flex-direction: column;
     justify-content: space-between;
     color: ${(props) => props.theme.colorGrey3};
+
+    .user-btn {
+        .cl-rootBox {
+            width: 100%;
+            height: 100%;
+            
+            .cl-userButtonBox{
+                width: 100%;
+                height: 100%;
+
+                .cl-userButtonTrigger {
+                    width: 100%;
+                    height: 100%;
+                    opacity: 0;
+                }
+            }
+        }
+    }
 
     .profile {
         margin: 1.5rem;

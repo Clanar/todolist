@@ -16,27 +16,23 @@ function Tasks({ title, tasks }: Props) {
     return (
         <TaskStyled theme={theme}>
             <h1>{title}</h1>
-            {!isLoading ? (
-                <div className="tasks grid">
-                    {tasks.map((task) => (
-                        <TaskItem
-                            key={task.id}
-                            title={task.title}
-                            description={task.description}
-                            date={task.date}
-                            isCompleted={task.completed}
-                            id={task.id}
-                        />
-                    ))}
-                    <button className="create-task">
-                        {plus}
-                        Add New Task
-                    </button>
-                </div>
-            ) : (
-                <div className='tasks-loader w-full h-full flex items-center justify-center'>
-                    <span className='loader'></span>
-                </div>)}
+            <div className="tasks grid">
+                {tasks.map((task) => (
+                    <TaskItem
+                        key={task.id}
+                        title={task.title}
+                        description={task.description}
+                        date={task.date}
+                        isCompleted={task.isCompleted}
+                        id={task.id}
+                    />
+                ))}
+                <button className="create-task">
+                    {plus}
+                    Add New Task
+                </button>
+            </div>
+
         </TaskStyled>
     )
 }

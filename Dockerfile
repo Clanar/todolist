@@ -10,6 +10,9 @@ COPY package*.json ./
 # Встановлення залежностей
 RUN npm install
 
+# Копіювання Prisma schema
+COPY prisma ./prisma
+
 # Генерація Prisma клієнта
 RUN npx prisma generate
 

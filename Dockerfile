@@ -1,19 +1,32 @@
-# Використання офіційного образу Node.js версії 20 на базі Alpine Linux
+# Use the official Node.js image version 20 based on Alpine Linux
 FROM node:20-alpine3.18 as builder
-# Встановлення робочого каталогу /app
+
+# Set the working directory
 WORKDIR /app
-# Копіювання файлів package.json та package-lock.json
+
+# Copy package.json and package-lock.json files
 COPY package*.json ./
-# Встановлення залежностей
+
+# Install dependencies
 RUN npm install --production
-# Копіювання Prisma schema
+
+# Copy Prisma schema
 COPY prisma ./prisma
-# Генерація Prisma клієнта
+
+# Generate Prisma client
 RUN npx prisma generate
-# Копіювання решти додатку
+
+# Copy the rest of the application
 COPY . .
-# Збірка Next.js додатку 
+
+# Install Tailwind CSS
+RUN npm install tailwindcss
+
+# Build the Next.js application
 RUN npm run build
+
+# Expose port 3000
 EXPOSE 3000
-# Команда для запуску додатку
-CMD ["npm", "run", "start"]
+
+# Command to start the application
+CMD ["npm", "start"]

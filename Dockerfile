@@ -16,6 +16,12 @@ COPY prisma ./prisma
 # Generate Prisma client
 RUN npx prisma generate
 
+# Install Clerk
+RUN npm install clerk
+
+# Copy Clerk configuration file if needed
+COPY clerk-config.json /app/clerk-config.json
+
 # Copy the rest of the application
 COPY . .
 

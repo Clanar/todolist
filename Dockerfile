@@ -1,6 +1,5 @@
 # Use the official Node.js image version 20 based on Alpine Linux
 FROM node:20-alpine3.18 as builder
-
 # Set the working directory
 WORKDIR /app
 

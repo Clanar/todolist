@@ -2,6 +2,9 @@
 
 ![Знімок екрана з 2024-03-08 20-14-24](https://github.com/user-attachments/assets/37eacbc6-e0e4-40b5-9e1a-3a3aac7206f6)
 
+![Знімок екрана з 2024-03-08 20-14-39](https://github.com/user-attachments/assets/e11f5856-b6a4-41dd-b0e8-28ccecc6d66f)
+
+
 
 ![Знімок екрана з 2024-03-08 20-14-54](https://github.com/user-attachments/assets/4ae315be-1e19-438b-936b-192280b263bb)
 
